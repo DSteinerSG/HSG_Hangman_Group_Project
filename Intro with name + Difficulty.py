@@ -32,12 +32,9 @@ difficulty = input('Please choose the level of difficulty: Easy (E), Medium (M) 
 # Using conditionals, choose a random word from the corresponding list of words               
 if difficulty.upper() == 'E':
     word = random.choice(easy_words)
-
 elif difficulty.upper() == 'M':
     word = random.choice(medium_words)
-
 elif difficulty.upper() == 'D':
     word = random.choice(difficult_words)
-
 else:
     print('Error - Wrong input')
