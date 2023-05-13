@@ -53,3 +53,6 @@ if won == 1:
 else:
     print("You lost the game.")
 
+# prevents console closing:
+con = input("Thank you for playing Hangman!")
+
