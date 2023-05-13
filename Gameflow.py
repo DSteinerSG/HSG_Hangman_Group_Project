@@ -48,7 +48,7 @@ while len(wrong_guesses) < turns:
             wrong_guesses.append(guess)
 
 
-if won = 1:
+if won == 1:
     print("You won the game!")
 else:
     print("You lost the game.")
