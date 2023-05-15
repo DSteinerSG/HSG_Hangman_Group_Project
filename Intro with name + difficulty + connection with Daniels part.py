@@ -86,8 +86,12 @@ while len(wrong_guesses) < max_number_of_misses:
 
 if won == 1:
     print("You won the game!")
+    print("The correct word was:", word)
+
 else:
     print("You lost the game.")
+    print("The correct word was:", word)
+
 
 # prevents console closing:
 con = input("Thank you for playing Hangman!")
