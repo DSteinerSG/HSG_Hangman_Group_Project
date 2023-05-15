@@ -11,7 +11,13 @@ with open('999 common english words.txt', 'r') as file:
 
 
 # Ask the player to choose the level of difficulty (easy, medium or difficult)
-difficulty = input('Please choose the level of difficulty: Easy (E), Medium (M) or Difficult (D) ')
+while True:
+    difficulty = input('Please choose the level of difficulty: Easy (E), Medium (M) or Difficult (D) ')
+    
+    if difficulty.upper() in ('E', 'M', 'D'):
+        break
+    else:
+        print('Wrong input. Please enter a valid level of difficulty.')
 
 # Using conditionals, choose a random word from the corresponding list of words
 # Anzahl von Fehlversuchen je Schwierigkeitsgrad noch festzulegen
