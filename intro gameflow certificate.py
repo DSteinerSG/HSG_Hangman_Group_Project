@@ -110,7 +110,7 @@ print("Thank you for playing Hangman!")
 # to print a certificate if a certain condition is met we use an if statement
 
 # certificate condition:
-    cert = 0
+cert = 0
     
 if cert == 0:
 
