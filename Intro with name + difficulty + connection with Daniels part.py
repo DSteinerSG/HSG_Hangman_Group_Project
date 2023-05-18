@@ -9,6 +9,33 @@ print('Hello' + ' ' + name + ',' + ' ' + "let's play Hangman!")
 with open('999 common english words.txt', 'r') as file:
     words = file.read().splitlines()
 
+# tutorial file
+tutorial = "empty"
+    
+    
+# Casual, comp or tutorial
+print("""This game can be played both casually for a single round and competitively, where you have to win 3 rounds 
+on the same difficulty to win a unique certificate.\n\n\n""")
+
+
+while True:
+
+    game_mode = input("Choose a game mode: Single-round (S), Competition (C) or Tutorial (T)").upper()
+    if game_mode == 'T':
+            print(tutorial, "\n\n\n\n\n")
+
+    elif game_mode == 'S':
+        comp = 0
+        break
+
+    elif game_mode == 'C':
+        comp = 1
+        break
+
+    else:
+        print("\n\n\nPlease enter a valid input.\n\n\n")
+
+
 # Start a loop for the game
 while True:
     
@@ -41,7 +68,7 @@ while True:
         max_number_of_misses = 4
 
    
-    # visible word:
+    # visible wordD:
     visible = ["_" for n in range(len(word))]
 
     # Turn-timer (difficulty-dependent):
