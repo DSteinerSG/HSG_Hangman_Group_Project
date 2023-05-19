@@ -10,7 +10,17 @@ with open('999 common english words.txt', 'r') as file:
     words = file.read().splitlines()
 
 # tutorial file
-tutorial = "empty"
+tutorial = "Hello" + " " + name + "," + " " + """welcome to the game Hangman. Hangman is a game where you have to guess a secret word by suggesting letters. 
+The only thing you know in advance is the number of letters of the word you are looking for. 
+This is represented by the number of strokes. If you guess a correct letter, the stroke will be replaced by the correct 
+letter at the appropriate position. If your suggested letter is wrong respectively not present in the searched word, 
+this counts as a miss. 
+
+This game can be played both casually for a single round and competitively, where you have to win 3 rounds on the same 
+level of difficulty to win a unique certificate. You can play the game in three different levels of difficulty, 
+which only differ in the number of allowed misses. In the easy level you have a total of eight misses, 
+in the medium level six and in the difficult level four. If you manage to correctly guess the word with fewer misses, 
+you win. Otherwise you lose. Good luck!"""
     
     
 # Casual, comp or tutorial
