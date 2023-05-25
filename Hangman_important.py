@@ -9,11 +9,12 @@
 
 # importing libraries
 import random
-
+import os
+import subprocess
 
 
 # opening a list with common english words
-with open('999 common english words.txt', 'r') as file:
+with open('words.txt', 'r') as file:
     words = file.read().splitlines()
 
 # TESTING:
@@ -213,6 +214,50 @@ def game_flow():
         game_round()
 
 
+##### printing a certificate to a txt file #####
+
+def open_certificate(certificate):
+    # differentiating the different commands for each operating system
+    # to achieve this, we use if statements
+    # Windows
+    if os.name == 'nt':  
+        with open('certificate.txt', 'w') as file:
+            file.write(certificate)
+        subprocess.run(['start', 'certificate.txt'], shell=True)
+   # macOS or Linux
+    elif os.name == 'posix':  
+        with open('certificate.txt', 'w') as file:
+            file.write(certificate)
+        subprocess.run(['open', 'certificate.txt'])
+    # if neither the Windows nor the macOS/Linux command is applicable we need to print an error message
+    else:
+        print("Unsupported operating system: cannot print the certificate.")
+
+
+##### creating the template for the certificate #####
+# passing in variables to individualise the certificate
+
+certificate_template = """
+
+_____________________________________________________________________________________________________
+
+**************************************| Congratulations |********************************************
+
+_____________________________________________________________________________________________________
+
+
+You, {name}, have successfully completed our hangman game!
+
+We hope you will play again soon!
+
+_____________________________________________________________________________________________________
+
+"""
+
+# Generate the certificate by passing in the variables
+certificate = certificate_template.format(name=name)
+
+
 ############ starting the actual game ############
 
 while repeat == 1:
@@ -226,9 +271,10 @@ while repeat == 1:
     # start the game
     game_flow()
 
-    # certificate !!! Funktionen hinzufügen !!!
+    # open the certificate if the player meets the requirements
     if comp == 1 and round_wins == 3:
-        print("CERTIFICATE")
+        open_certificate(certificate)
+
 
 
     while True:
