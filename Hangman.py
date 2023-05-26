@@ -1,6 +1,7 @@
 #####
 
 # Python version of the Hangman Guessing Game
+# by Luca Gmuer, Dejan Sajlovic, Daniel Steiner
 
 #####
 
@@ -41,7 +42,7 @@ while True:
         print("Please input a valid name.")
 
 # Hangman rules explanation
-tutorial = "\n\n" + "*"*80 + "\n" + "Hello" + " " + name + "," + " " + """welcome to our Hangman game!\n
+tutorial = "\n\n" + "#"*80 + "\n" + "Hello" + " " + name + "," + " " + """welcome to our Hangman game!\n
 Hangman is a game where you have to guess a secret word by suggesting letters.
 The only thing you know in advance is the number of letters of the word you are looking for.
 This is represented by the number of underscores.
@@ -53,7 +54,7 @@ This game can be played both casually for a single round and competitively, wher
 level of difficulty to win a unique certificate. There are three different levels of difficulty, 
 differing by the number of allowed misses. In the easy level you have a total of 10 misses, 
 in the medium level 7 and in the hard level 5. If you manage to correctly guess the word with fewer misses, 
-you win. Otherwise you lose.\nGood luck!""" + "\n" + "*"*80
+you win. Otherwise you lose.\nGood luck!""" + "\n" + "#"*80
 
 
 
@@ -312,7 +313,7 @@ while repeat == 1:
         
         # if incorrect input, prompt the player to enter a correct input
         else:
-            print("Please only input YES or NO.")
+            print("\nPlease only input YES or NO.")
 
 
 
