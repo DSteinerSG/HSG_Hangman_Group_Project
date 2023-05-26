@@ -17,17 +17,15 @@ import subprocess
 with open('words.txt', 'r') as file:
     words = file.read().splitlines()
 
-# TESTING:
-words = ["tree", "deer", "star"]
-
 
 # init variables for consecutive rounds
 round_wins = 0
 repeat = 1
 
 # difficulty levels and name possibilities
-diff_dic = {'E': 'EASY', 'M': 'MEDIUM', 'D': 'DIFFICULT'}
+diff_dic = {'E': 'EASY', 'M': 'MEDIUM', 'H': 'HARD'}
 names_possible = list("abcdefghijklmnopqrstuvwxyzäöü ")
+
 
 # Asking the player for a valid name and greeting them
 while True:
@@ -49,7 +47,7 @@ present in the hidden word, this counts as a miss.
 This game can be played both casually for a single round and competitively, where you have to win 3 rounds on the same 
 level of difficulty to win a unique certificate. There are three different levels of difficulty, 
 differing by the number of allowed misses. In the easy level you have a total of 8 misses, 
-in the medium level 6 and in the difficult level 4. If you manage to correctly guess the word with fewer misses, 
+in the medium level 6 and in the hard level 4. If you manage to correctly guess the word with fewer misses, 
 you win. Otherwise you lose. Good luck!""" + "\n\n" + "*"*100
 
 
@@ -89,11 +87,11 @@ def choose_difficulty():
     # looping for input validation
     while True:
 
-        # ask the player to choose the level of difficulty (easy, medium or difficult)
-        difficulty = input('Please choose the level of difficulty: Easy (E), Medium (M) or Difficult (D) ').upper()
+        # ask the player to choose the level of difficulty (easy, medium or hard)
+        difficulty = input('Please choose the level of difficulty: Easy (E), Medium (M) or Hard (H) ').upper()
 
         # if the input is correct continue with the game
-        if difficulty in ('E', 'M', 'D'):
+        if difficulty in ('E', 'M', 'H'):
             break
 
         # if the input is wrong, ask the player to enter a valid level of difficulty
@@ -114,15 +112,15 @@ def game_round():
     # using conditionals, choose a random word from the corresponding list of words
     # depending on the difficulty level the player has a certain number of failed attempts at his/her disposal
 
-    if difficulty.upper() == 'E':
+    if difficulty == 'E':
         word = random.choice(words)
         max_number_of_misses = 8
 
-    elif difficulty.upper() == 'M':
+    elif difficulty == 'M':
         word = random.choice(words)
         max_number_of_misses = 6
 
-    elif difficulty.upper() == 'D':
+    elif difficulty == 'H':
         word = random.choice(words)
         max_number_of_misses = 4
 
@@ -308,4 +306,4 @@ while repeat == 1:
 
 
 
-print("Thank you for playing Hangman!")
+print("\nThank you for playing Hangman!")
