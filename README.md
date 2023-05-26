@@ -7,7 +7,7 @@ The group project focuses on creating a simple text-based implementation of the 
 Python 3.XX <br>
 Python environment must be allowed to read and write files
 
-## Getting Started:
+## Getting Started
 1. Clone the repository or download the source code.
 2. Open a terminal or command prompt and navigate to the project directory.
 
