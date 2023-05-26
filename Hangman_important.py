@@ -219,16 +219,19 @@ def game_flow():
 def open_certificate(certificate):
     # differentiating the different commands for each operating system
     # to achieve this, we use if statements
+    
     # Windows
     if os.name == 'nt':  
         with open('certificate.txt', 'w') as file:
             file.write(certificate)
         subprocess.run(['start', 'certificate.txt'], shell=True)
+        
    # macOS or Linux
     elif os.name == 'posix':  
         with open('certificate.txt', 'w') as file:
             file.write(certificate)
         subprocess.run(['open', 'certificate.txt'])
+        
     # if neither the Windows nor the macOS/Linux command is applicable we need to print an error message
     else:
         print("Unsupported operating system: cannot print the certificate.")
