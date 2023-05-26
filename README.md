@@ -1,5 +1,5 @@
 # HSG_Group_Project
-This is a project for the HSG Programming Group assignment.
+This is a project for the HSG Programming Group assignment. Luca Gmür, Dejan Sajlovic and Daniel Steiner worked on this assignement.
 
 The group project focuses on creating a simple text-based implementation of the classic word-guessing game known as HANGMAN. Players have to guess a secret word by inputting individual letters within a limited number of attempts. The number of attempts depend on the difficulty level chosen by each player. If a player decides to play competitevely he is able to earn a certificate if he correctly guesses three words in a row.
 
