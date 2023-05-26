@@ -5,6 +5,7 @@
 
 # Prerequisites
 # Python 3.XX 
+# Python environment must be allowed to read and write files
 
 # Getting Started:
 # 1. Clone the repository or download the source code.
