@@ -25,13 +25,23 @@ words = ["tree", "deer", "star"]
 round_wins = 0
 repeat = 1
 
-# Asking the player to enter his/her name and greet him/her
-name = input('Please enter your name: ')
-print('Hello' + ' ' + name + ',' + ' ' + "let's play Hangman!")
+# difficulty levels and name possibilities
+diff_dic = {'E': 'EASY', 'M': 'MEDIUM', 'D': 'DIFFICULT'}
+names_possible = list("abcdefghijklmnopqrstuvwxyzäöü ")
+
+# Asking the player for a valid name and greeting them
+while True:
+
+    name = input('Please enter your name: ')
+    if set(name.lower()).issubset(set(names_possible)):
+        print('Hello' + ' ' + name + ',' + ' ' + "let's play Hangman!")
+        break
+    else:
+        print("Please input a valid name.")
 
 # Hangman rules explanation
-tutorial = "Hello" + " " + name + "," + " " + """welcome to the game Hangman. Hangman is a game where you have to 
-guess a secret word by suggesting letters. The only thing you know in advance is the number of letters of the word 
+tutorial = "\n\n" + "*"*100 + "\n\n" + "Hello" + " " + name + "," + " " + """welcome to our Hangman game!\n
+Hangman is a game where you have to guess a secret word by suggesting letters. The only thing you know in advance is the number of letters of the word 
 you are looking for. This is represented by the number of underscores. If you guess a correct letter, the underscore will be 
 replaced by the correct letter at the appropriate position. If your suggested letter is wrong and not 
 present in the hidden word, this counts as a miss.
@@ -40,11 +50,8 @@ This game can be played both casually for a single round and competitively, wher
 level of difficulty to win a unique certificate. There are three different levels of difficulty, 
 differing by the number of allowed misses. In the easy level you have a total of 8 misses, 
 in the medium level 6 and in the difficult level 4. If you manage to correctly guess the word with fewer misses, 
-you win. Otherwise you lose. Good luck!"""
+you win. Otherwise you lose. Good luck!""" + "\n\n" + "*"*100
 
-# Casual, comp or tutorial (Do we need this?)
-print("""This game can be played both casually for a single round and competitively, where you have to win 3 rounds 
-on the same difficulty to win a unique certificate.\n\n\n""")
 
 
 ############ Defining functions for every part of the game ############
@@ -83,10 +90,10 @@ def choose_difficulty():
     while True:
 
         # ask the player to choose the level of difficulty (easy, medium or difficult)
-        difficulty = input('Please choose the level of difficulty: Easy (E), Medium (M) or Difficult (D) ')
+        difficulty = input('Please choose the level of difficulty: Easy (E), Medium (M) or Difficult (D) ').upper()
 
         # if the input is correct continue with the game
-        if difficulty.upper() in ('E', 'M', 'D'):
+        if difficulty in ('E', 'M', 'D'):
             break
 
         # if the input is wrong, ask the player to enter a valid level of difficulty
@@ -249,7 +256,7 @@ ________________________________________________________________________________
 _____________________________________________________________________________________________________
 
 
-You, {name}, have successfully completed our hangman game!
+You, {name}, have successfully completed our hangman game on the {diff} difficulty!
 
 We hope you will play again soon!
 
@@ -257,8 +264,6 @@ ________________________________________________________________________________
 
 """
 
-# Generate the certificate by passing in the variables
-certificate = certificate_template.format(name=name)
 
 
 ############ starting the actual game ############
@@ -274,8 +279,10 @@ while repeat == 1:
     # start the game
     game_flow()
 
-    # open the certificate if the player meets the requirements
+    # generate and open the certificate if the player meets the requirements
     if comp == 1 and round_wins == 3:
+
+        certificate = certificate_template.format(name=name, diff=diff_dic[difficulty])
         open_certificate(certificate)
 
 
