@@ -18,9 +18,12 @@ with open('words.txt', 'r') as file:
     words = file.read().splitlines()
 
 
-# init variables for consecutive rounds
-round_wins = 0
+# init variable for consecutive rounds
 repeat = 1
+
+# dividing print statements
+def cell_divider():
+    print("\n"+"#"*80+"\n")
 
 # difficulty levels and name possibilities
 diff_dic = {'E': 'EASY', 'M': 'MEDIUM', 'H': 'HARD'}
@@ -32,23 +35,25 @@ while True:
 
     name = input('Please enter your name: ')
     if set(name.lower()).issubset(set(names_possible)):
-        print('Hello' + ' ' + name + ',' + ' ' + "let's play Hangman!")
+        print('\nHello' + ' ' + name + ',' + ' ' + "let's play Hangman!")
         break
     else:
         print("Please input a valid name.")
 
 # Hangman rules explanation
-tutorial = "\n\n" + "*"*100 + "\n\n" + "Hello" + " " + name + "," + " " + """welcome to our Hangman game!\n
-Hangman is a game where you have to guess a secret word by suggesting letters. The only thing you know in advance is the number of letters of the word 
-you are looking for. This is represented by the number of underscores. If you guess a correct letter, the underscore will be 
+tutorial = "\n\n" + "*"*80 + "\n" + "Hello" + " " + name + "," + " " + """welcome to our Hangman game!\n
+Hangman is a game where you have to guess a secret word by suggesting letters.
+The only thing you know in advance is the number of letters of the word you are looking for.
+This is represented by the number of underscores.
+If you guess a correct letter, the underscore will be 
 replaced by the correct letter at the appropriate position. If your suggested letter is wrong and not 
 present in the hidden word, this counts as a miss.
 
 This game can be played both casually for a single round and competitively, where you have to win 3 rounds on the same 
 level of difficulty to win a unique certificate. There are three different levels of difficulty, 
-differing by the number of allowed misses. In the easy level you have a total of 8 misses, 
-in the medium level 6 and in the hard level 4. If you manage to correctly guess the word with fewer misses, 
-you win. Otherwise you lose. Good luck!""" + "\n\n" + "*"*100
+differing by the number of allowed misses. In the easy level you have a total of 10 misses, 
+in the medium level 7 and in the hard level 5. If you manage to correctly guess the word with fewer misses, 
+you win. Otherwise you lose.\nGood luck!""" + "\n" + "*"*80
 
 
 
@@ -60,10 +65,10 @@ def mode_setter():
     # looping for tutorial and input validation purposes
     while True:
 
-        game_mode = input("Choose a game mode: Single-round (S), Competition (C) or Tutorial (T)").upper()
+        game_mode = input("\nChoose a game mode: Single-round (S), Competition (C) or Tutorial (T)").upper()
 
         if game_mode == 'T':  # Shows the rules
-            print(tutorial, "\n\n\n\n\n")
+            print(tutorial, "\n")
 
         elif game_mode == 'S':  # Only one word will be presented
             comp = 0
@@ -88,7 +93,7 @@ def choose_difficulty():
     while True:
 
         # ask the player to choose the level of difficulty (easy, medium or hard)
-        difficulty = input('Please choose the level of difficulty: Easy (E), Medium (M) or Hard (H) ').upper()
+        difficulty = input('\nPlease choose the level of difficulty: Easy (E), Medium (M) or Hard (H) ').upper()
 
         # if the input is correct continue with the game
         if difficulty in ('E', 'M', 'H'):
@@ -114,15 +119,15 @@ def game_round():
 
     if difficulty == 'E':
         word = random.choice(words)
-        max_number_of_misses = 8
+        max_number_of_misses = 10
 
     elif difficulty == 'M':
         word = random.choice(words)
-        max_number_of_misses = 6
+        max_number_of_misses = 7
 
     elif difficulty == 'H':
         word = random.choice(words)
-        max_number_of_misses = 4
+        max_number_of_misses = 5
 
     # what the player can see after every letter
     visible = ["_" for n in range(len(word))]
@@ -140,12 +145,15 @@ def game_round():
     # looping for every input until the round is either won or lost
     while len(wrong_guesses) < max_number_of_misses:
 
+        # divider
+        cell_divider()
+
         # checking for won round
         if "_" not in visible:
             won = 1
             break
 
-        print("\n\n\n")
+        print("\n")
         print(*visible)
         print(f"\n\nWrong guesses: {*wrong_guesses,}   {max_number_of_misses - len(wrong_guesses)} remaining.\n\n")
 
@@ -154,10 +162,10 @@ def game_round():
         guess = input("Please enter a letter to try: ").lower()
 
         if guess not in letters_possible:
-            print("Please enter a valid letter.")
+            print("\nPlease enter a valid letter.")
 
         elif guess not in letters:
-            print("You have already guessed this letter.")
+            print("\nYou have already guessed this letter.")
 
         else:
             # prevent guessing the same letter twice
@@ -182,10 +190,10 @@ def game_round():
             print("You won the game!")
 
         else:
-            print("You lost the game.")
+            print("\nYou lost the game.")
 
         # print the correct word
-        print("The correct word was:", word)
+        print("\nThe correct word was:", word)
 
 
     else:  # competition mode
@@ -193,7 +201,7 @@ def game_round():
         if won == 1:
 
             # Print the correct word
-            print("You won the round!\n\n")
+            print("You won the round!\n")
             print("The correct word was:", word)
 
             # adjust number of rounds:
@@ -201,12 +209,13 @@ def game_round():
             round_wins += 1
 
             if num_games > 0:
-                print("\n\nNext round!\n\n")
+                print("\nNext round!")
 
         else:
 
-            print("The correct word was:", word)
-            print("You lost the game.")
+            print("\nYou lost the game.")
+            print("\nThe correct word was:", word)
+
 
             # adjust number of games:
             num_games = 0
@@ -227,15 +236,15 @@ def open_certificate(certificate):
     
     # Windows
     if os.name == 'nt':  
-        with open('certificate.txt', 'w') as file:
+        with open(f'Hangman_certificate_{diff_dic[difficulty]}.txt', 'w') as file:
             file.write(certificate)
-        subprocess.run(['start', 'certificate.txt'], shell=True)
+        subprocess.run(['start', f'Hangman_certificate_{diff_dic[difficulty]}.txt'], shell=True)
         
    # macOS or Linux
     elif os.name == 'posix':  
-        with open('certificate.txt', 'w') as file:
+        with open(f'Hangman_certificate_{diff_dic[difficulty]}.txt', 'w') as file:
             file.write(certificate)
-        subprocess.run(['open', 'certificate.txt'])
+        subprocess.run(['open', f'Hangman_certificate_{diff_dic[difficulty]}.txt'])
         
     # if neither the Windows nor the macOS/Linux command is applicable we need to print an error message
     else:
@@ -274,6 +283,9 @@ while repeat == 1:
     # difficulty
     difficulty = choose_difficulty()
 
+    # reset round count
+    round_wins = 0
+
     # start the game
     game_flow()
 
@@ -288,7 +300,7 @@ while repeat == 1:
     while True:
         
         # ask the player whether he/she wants to play again
-        play_again = input('Do you want to play again? Input YES or NO: ').upper()
+        play_again = input('\nDo you want to play again? Input YES or NO: ').upper()
         
         # if YES, start the game again
         if play_again == 'NO':
@@ -297,6 +309,7 @@ while repeat == 1:
         
         # if NO, end the game and thank the player for playing Hangman
         elif play_again == 'YES':
+            cell_divider()
             break
         
         # if incorrect input, prompt the player to enter a correct input
