@@ -114,19 +114,17 @@ def game_round():
     global num_games
     global round_wins
 
-    # using conditionals, choose a random word from the corresponding list of words
-    # depending on the difficulty level the player has a certain number of failed attempts at his/her disposal
+    # randomly choosing a hidden word
+    word = random.choice(words)
 
+    # difficulty dependent number of wrong guesses
     if difficulty == 'E':
-        word = random.choice(words)
         max_number_of_misses = 10
 
     elif difficulty == 'M':
-        word = random.choice(words)
         max_number_of_misses = 7
 
     elif difficulty == 'H':
-        word = random.choice(words)
         max_number_of_misses = 5
 
     # what the player can see after every letter
