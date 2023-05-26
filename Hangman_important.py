@@ -279,18 +279,22 @@ while repeat == 1:
         open_certificate(certificate)
 
 
-
+    # looping for input validation
     while True:
-
-        # ask the player whether he/she wants to play again.
-        # if YES, start the game again
-        # if NO, end the game and thank the player for playing Hangman
+        
+        # ask the player whether he/she wants to play again
         play_again = input('Do you want to play again? Input YES or NO: ').upper()
+        
+        # if YES, start the game again
         if play_again == 'NO':
             repeat = 0
             break
+        
+        # if NO, end the game and thank the player for playing Hangman
         elif play_again == 'YES':
             break
+        
+        # if incorrect input, prompt the player to enter a correct input
         else:
             print("Please only input YES or NO.")
 
